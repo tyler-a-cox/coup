@@ -98,9 +98,11 @@ class Player:
 
         if challenge_action:
             # Update player history
-            reaction = "challenge" if random.uniform(0, 1) < self.lie_detector else "block"
-
-            if reaction == "block" and action in [Action.TAX, Action.STEAL, Action.EXCHANGE]:
+            reaction = "challenge" if random.uniform(0, 1) < 0.5 else "block"
+            
+            if reaction == "challenge" and action in [Action.FOREIGN_AID,]:
+                reaction = "block"
+            elif reaction == "block" and action in [Action.TAX, Action.STEAL, Action.EXCHANGE]:
                 reaction = "challenge"
 
             return (reaction,)
